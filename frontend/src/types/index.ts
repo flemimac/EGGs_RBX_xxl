@@ -1,17 +1,19 @@
 export interface User {
-  id: number;
+  id: string;
   email: string;
   full_name: string | null;
-  is_active: boolean;
 }
 
 export interface Token {
   access_token: string;
 }
 
-export interface Item {
-  id: number;
-  name: string | null;
+export interface Route {
+  id: string;
+  name: string;
+  user_id: string;
+  files?: string[];
+  fileCount?: number;
 }
 
 export interface LoginFormData {

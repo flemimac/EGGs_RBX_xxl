@@ -5,6 +5,11 @@
     background: #f8fafc;
 }
 
+html {
+    overflow: hidden;
+    height: 100%;
+}
+
 body {
     margin: 0;
     min-height: 100vh;
@@ -12,10 +17,13 @@ body {
     align-items: flex-start;
     justify-content: center;
     padding: 3rem 1rem;
+    overflow: hidden;
+    height: 100vh;
 }
 
 main {
-    width: min(960px, 100%);
+    width: 100%;
+    max-width: 2500px;
     padding: 2rem 3rem;
     border-radius: 24px;
     background: white;
@@ -23,6 +31,7 @@ main {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    margin: 0 auto;
 }
 
 .app-header {
@@ -41,6 +50,7 @@ h1 {
     padding: 1.5rem;
     background: #f8fafc;
 }
+
 
 .auth-only form,
 .auth-forms form {
@@ -139,60 +149,65 @@ button:disabled {
 
 @media (min-width: 1920px) {
     main {
-        width: min(1200px, 100%);
+        max-width: 2500px;
+        width: 100%;
         padding: 3rem 4rem;
     }
 
     .card {
-        margin: 0px 300px;
+        margin: 0;
         padding: 2rem;
     }
 }
 
 @media (min-width: 1440px) and (max-width: 1919px) {
     main {
-        width: min(1000px, 100%);
+        max-width: 2500px;
+        width: 100%;
         padding: 2.5rem 3.5rem;
     }
 
     .card {
-        margin: 0px 250px;
+        margin: 0;
         padding: 1.75rem;
     }
 }
 
 @media (min-width: 1280px) and (max-width: 1439px) {
     main {
-        width: min(960px, 100%);
+        max-width: 2500px;
+        width: 100%;
         padding: 2rem 3rem;
     }
 
     .card {
-        margin: 0px 200px;
+        margin: 0;
         padding: 1.5rem;
     }
 }
 
 @media (min-width: 1024px) and (max-width: 1279px) {
     main {
-        width: min(900px, 100%);
+        max-width: 2500px;
+        width: 100%;
         padding: 2rem 2.5rem;
     }
 
     .card {
-        margin: 0px 150px;
+        margin: 0;
         padding: 1.5rem;
     }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
     main {
-        width: min(800px, 100%);
+        max-width: 2500px;
+        width: 100%;
         padding: 1.75rem 2rem;
     }
 
     .card {
-        margin: 0px 100px;
+        margin: 0;
         padding: 1.25rem;
     }
 }

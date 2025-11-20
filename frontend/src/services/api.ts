@@ -1,4 +1,4 @@
-import type { User, Token, Item, LoginFormData, RegisterFormData } from '../types';
+import type { User, Token, LoginFormData, RegisterFormData, Route } from '../types';
 import { API_BASE_URL } from '../config/constants';
 import { storage } from '../utils/storage';
 
@@ -67,8 +67,76 @@ class ApiService {
     return this.request<User>('/auth/me');
   }
 
-  async getItems(): Promise<Item[]> {
-    return this.request<Item[]>('/items');
+  async getRoutes(): Promise<Route[]> {
+    return this.request<Route[]>('/routes');
+  }
+
+  async createRoute(name: string): Promise<Route> {
+    return this.request<Route>('/routes', {
+      method: 'POST',
+      body: JSON.stringify({ name }),
+    });
+  }
+
+  private async requestWithoutBody(
+    endpoint: string,
+    method: string = 'DELETE'
+  ): Promise<void> {
+    const token = this.getToken();
+    const headers: Record<string, string> = {};
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+    }
+
+    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+      method,
+      headers,
+    });
+
+    if (!response.ok && response.status !== 204) {
+      const error = await response.json().catch(() => ({ detail: 'Неизвестная ошибка' }));
+      throw new Error(error.detail || `Ошибка HTTP! Статус: ${response.status}`);
+    }
+  }
+
+  private async requestWithFormData<T>(
+    endpoint: string,
+    formData: FormData
+  ): Promise<T> {
+    const token = this.getToken();
+    const headers: Record<string, string> = {};
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+    }
+
+    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+      method: 'POST',
+      headers,
+      body: formData,
+    });
+
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({ detail: 'Неизвестная ошибка' }));
+      throw new Error(error.detail || `Ошибка HTTP! Статус: ${response.status}`);
+    }
+
+    if (response.status === 204 || response.headers.get('content-length') === '0') {
+      return undefined as T;
+    }
+
+    return response.json();
+  }
+
+  async deleteRoute(id: string): Promise<void> {
+    return this.requestWithoutBody(`/routes/${id}`, 'DELETE');
+  }
+
+  async uploadFiles(routeId: string, files: File[]): Promise<void> {
+    const formData = new FormData();
+    files.forEach((file) => {
+      formData.append('files', file);
+    });
+    return this.requestWithFormData<void>(`/routes/${routeId}/files`, formData);
   }
 }
 

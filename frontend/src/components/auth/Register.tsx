@@ -1,7 +1,7 @@
 import React, { useState, FormEvent } from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../contexts';
-import { ROUTES } from '../config/constants';
+import { useAuth } from '../../contexts';
+import { ROUTES } from '../../config/constants';
 
 export const Register: React.FC = () => {
   const [email, setEmail] = useState('');

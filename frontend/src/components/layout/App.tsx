@@ -1,28 +1,38 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider } from '../contexts';
-import { ROUTES } from '../config/constants';
-import { Login, Register, Home, Header, ProtectedRoute, PublicRoute } from './';
+import { AuthProvider } from '../../contexts';
+import { ROUTES } from '../../config/constants';
+import { Header } from './Header';
+import { ProtectedRoute } from './ProtectedRoute';
+import { PublicRoute } from './PublicRoute';
+import { Login } from '../auth/Login';
+import { Register } from '../auth/Register';
+import { Home } from '../routes/Home';
 
 const AppContent: React.FC = () => {
   return (
     <main>
-      <Header />
       <Routes>
         <Route
           path={ROUTES.LOGIN}
           element={
-            <PublicRoute>
-              <Login />
-            </PublicRoute>
+            <>
+              <Header />
+              <PublicRoute>
+                <Login />
+              </PublicRoute>
+            </>
           }
         />
         <Route
           path={ROUTES.REGISTER}
           element={
-            <PublicRoute>
-              <Register />
-            </PublicRoute>
+            <>
+              <Header />
+              <PublicRoute>
+                <Register />
+              </PublicRoute>
+            </>
           }
         />
         <Route

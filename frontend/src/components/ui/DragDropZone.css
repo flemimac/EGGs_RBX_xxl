@@ -1,0 +1,46 @@
+.drag-drop-zone {
+  border: 2px dashed #cbd5e1;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #f8fafc;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.drag-drop-zone:hover {
+  border-color: #2563eb;
+  background: #eff6ff;
+}
+
+.drag-drop-zone.dragging {
+  border-color: #2563eb;
+  background: #dbeafe;
+  transform: scale(1.02);
+}
+
+.drag-drop-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  color: #64748b;
+}
+
+.drag-drop-content svg {
+  color: #94a3b8;
+}
+
+.drag-drop-zone.dragging .drag-drop-content svg {
+  color: #2563eb;
+}
+
+.drag-drop-content p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation, Link } from 'react-router-dom';
-import { useAuth } from '../contexts';
-import { ROUTES } from '../config/constants';
+import { useAuth } from '../../contexts';
+import { ROUTES } from '../../config/constants';
 import './Header.css';
 
 export const Header: React.FC = () => {
