@@ -28,3 +28,9 @@ npm install
 python start.py
 ```
 После запуска сайта следуйте инструкциям на экране.
+
+
+### Члены команды разработки:
+- Frontend [Александр Мязин](https://github.com/flemimac)
+- Backend [Александр Игнатюк](https://github.com/fireek1)
+- Дизайн и менеджер [Савва Морозов](https://github.com/Befivee)
